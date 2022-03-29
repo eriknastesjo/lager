@@ -11,7 +11,7 @@ function StockList() {
             .then(result => setProducts(result.data));
     }, []);
 
-    const list = products.map((product, index) => <Text key={index}>{product.name}</Text>);
+    const list = products.map((product, index) => <Text key={index}> {product.name} ({product.stock} st)</Text>);
 
     return (
         <View>
