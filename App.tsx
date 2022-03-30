@@ -2,17 +2,22 @@ import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import warehouse from './assets/warehouse.jpg';
-import Stock from './components/Stock.tsx';
+import Stock from './components/Stock';
+// import React from 'react';
+// import './css/style.css';
+// import './App.css';
 
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.base}>
-        <Text style={{ color: '#33c', fontSize: 42 }}>Lager-Appen</Text>
-        <Image source={warehouse} style={{ width: 320, height: 240 }} />
-        <Stock />
-        <StatusBar style="auto" />
+        <Text style={styles.title}>Lager-Appen</Text>
+        <View style={styles.content}>
+          <Image source={warehouse} style={styles.image} />
+          <Stock />
+          <StatusBar style="auto" />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -20,12 +25,33 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   base: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingLeft: 12,
-    paddingRight: 12,
-  }
+    backgroundColor: '#eee',
+  },
+  title: {
+    color: '#fff',
+    backgroundColor: '#CB731D',
+    fontSize: 42,
+    fontFamily: "monospace",
+    marginTop: 20,
+    marginBottom: 20,
+    textAlign: "center",
+    paddingTop: 10,
+    paddingBottom: 15,
+
+  },
+  image: {
+    width: 320,
+    height: 240,
+    marginBottom: 10,
+    alignSelf: "center",
+  },
+  content: {
+    marginLeft: 40,
+    marginRight: 40
+  },
+
 });
