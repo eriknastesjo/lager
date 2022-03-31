@@ -36,11 +36,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#CB731D',
     fontSize: 42,
     fontFamily: "monospace",
-    marginTop: 20,
     marginBottom: 20,
     textAlign: "center",
-    paddingTop: 10,
-    paddingBottom: 15,
+    paddingTop: 15,
+    paddingBottom: 20,
 
   },
   image: {
