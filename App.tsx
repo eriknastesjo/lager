@@ -1,56 +1,51 @@
+import { Ionicons } from '@expo/vector-icons';
+import { Base, Header } from './styles/index';
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import warehouse from './assets/warehouse.jpg';
-import Stock from './components/Stock';
-// import React from 'react';
-// import './css/style.css';
-// import './App.css';
+import Home from './components/Home';
+import Pick from './components/Pick';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useState, useEffect } from 'react';
 
+
+const Tab = createBottomTabNavigator();
+const routeIcons = {
+  "Lager": "cog",
+  "Plock": "gift-sharp",
+};
 
 export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.base}>
-        <Text style={styles.title}>Lager-Appen</Text>
-        <View style={styles.content}>
-          <Image source={warehouse} style={styles.image} />
-          <Stock />
-          <StatusBar style="auto" />
-        </View>
-      </View>
-    </SafeAreaView>
-  );
+
+  const [products, setProducts] = useState([]);
+
+return (
+  <SafeAreaView style={Base.container}>
+    <Text style={Header.title}>Lager-Apan</Text>
+    <Image source={warehouse} style={Header.image}/>
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName = routeIcons[route.name] || "alert";
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: '#CB731D',
+        tabBarInactiveTintColor: 'gray',
+      })}
+      >
+        <Tab.Screen name="Lager">
+          {() => <Home products={products} setProducts={setProducts} />}
+        </Tab.Screen>
+        <Tab.Screen name="Plock">
+          {() => <Pick products={products} setProducts={setProducts} />}
+        </Tab.Screen>
+        {/* <Tab.Screen name="Plock" component={Pick} /> */}
+      </Tab.Navigator>
+    </NavigationContainer>
+    <StatusBar style="auto" />
+  </SafeAreaView>
+);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  base: {
-    flex: 1,
-    backgroundColor: '#eee',
-  },
-  title: {
-    color: '#fff',
-    backgroundColor: '#CB731D',
-    fontSize: 42,
-    fontFamily: "monospace",
-    marginBottom: 20,
-    textAlign: "center",
-    paddingTop: 15,
-    paddingBottom: 20,
-
-  },
-  image: {
-    width: 320,
-    height: 240,
-    marginBottom: 10,
-    alignSelf: "center",
-  },
-  content: {
-    marginLeft: 40,
-    marginRight: 40
-  },
-
-});
