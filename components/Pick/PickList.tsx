@@ -1,6 +1,6 @@
 import { View, Text, Button } from "react-native";
-import orderModel from "../models/orders.ts";
-import productModel from "../models/products.ts";
+import orderModel from "../../models/orders";
+import productModel from "../../models/products";
 
 export default function PickList({ route, navigation, setProducts }) {
     const { order } = route.params; // se i OrderList funktionen listOfOrders och vid 'Onpress'

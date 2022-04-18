@@ -9,9 +9,25 @@ export const header1 = {
     paddingBottom: 7,
 };
 
+export const header2 = {
+    backgroundColor: '#FF9731',
+    color: "#2C2A29",
+    fontSize: 22,
+    fontFamily: "sans-serif",
+    textAlign: "center",
+    marginBottom: 10,
+    paddingTop: 7,
+    paddingBottom: 7,
+};
+
 export const normal = {
     color: '#333',
     fontSize: 17,
     fontFamily: "sans-serif",
     marginBottom: 10,
 };
+
+export const label = {
+
+};
+

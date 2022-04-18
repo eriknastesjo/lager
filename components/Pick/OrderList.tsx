@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { View, Text, Button } from "react-native";
-import config from "./../config/config.json";
-import orderModel from '../models/orders';
+import config from "../../config/config.json";
+import orderModel from '../../models/orders';
 
-export default function OrderList({ route, navigation, products, setProducts }) {
+export default function OrderList({ route, navigation }) {
 
     // console.log(route);
 
-    const { reload } = route.params || false;
+    const { reload } = route.params || true;
 
     if (reload) {
         reloadOrders();
+        console.log("reload!");
     }
 
     async function reloadOrders() {

@@ -1,5 +1,3 @@
-import { StyleSheet } from 'react-native';
-
 export const title = {
     color: '#fff',
     backgroundColor: '#CB731D',

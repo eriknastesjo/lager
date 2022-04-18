@@ -1,10 +1,9 @@
 import config from "../config/config.json";
 import Order from "../interfaces/order";
 import OrderItem from "../interfaces/order_item";
+import productModel from "./products";
 
-import products from "./products";
-
-const orders = {
+const orderModel = {
     getOrders: async function getOrders(): Promise<Order[]> {
         const response = await fetch(`${config.base_url}/orders?api_key=${config.api_key}`);
         const result = await response.json();
@@ -21,7 +20,7 @@ const orders = {
                 stock: order_item.stock - order_item.amount, // minskar lagerstatus i produkttabellen
                 api_key: config.api_key,
             }
-            products.updateProduct(changedProduct);
+            productModel.updateProduct(changedProduct);
         }));
 
         let changedOrder = {
@@ -36,7 +35,8 @@ const orders = {
     },
 
     updateOrder: async function updateOrder(order: Partial<Order>) {
-        await fetch(`${config.base_url}/orders?api_key=${config.api_key}`, {
+
+        await fetch(`${config.base_url}/orders`, {
             body: JSON.stringify(order),
             headers: {
                 'content-type': 'application/json'
@@ -47,4 +47,4 @@ const orders = {
 
 };
 
-export default orders;
+export default orderModel;

@@ -9,11 +9,10 @@ export default function Pick(props) {
     // console.log(props);
     return (
         <Stack.Navigator initialRouteName="List">
-            {/* <Stack.Screen name="List" component={OrderList} /> */}
-            <Stack.Screen name="List">
+            <Stack.Screen name="List" component={OrderList} />
+            {/* <Stack.Screen name="List">
                 {(screenProps2) => <OrderList {...screenProps2} setProducts={props.setProducts} />}
-                {/* screenProps är godtyckligt namn på den props vi skickar in (namnet props var redan upptaget) */}
-            </Stack.Screen>
+            </Stack.Screen> */}
 
             {/* <Stack.Screen name="Details" component={PickList} /> */}
             <Stack.Screen name="Details">

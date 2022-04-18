@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Text, View, ScrollView, StyleSheet } from 'react-native';
-import config from "../config/config.json";
-import { Typography } from '../styles/index';
-import productModel from '../models/products';
+import config from "../../config/config.json";
+import { Typography } from '../../styles/index';
+import productModel from '../../models/products';
 
 function StockList({ products, setProducts }) {
     // const [products, setProducts] = useState([]);
