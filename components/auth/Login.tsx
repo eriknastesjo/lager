@@ -1,14 +1,13 @@
 import Auth from '../../interfaces/auth';
 import { useState } from 'react';
 import AuthModel from '../../models/auth';
-import AuthFields from './AuthFields';
+import AuthFields from './Authfields';
 
 export default function Login({ navigation, setIsLoggedIn }) {
     const [auth, setAuth] = useState<Partial<Auth>>({});
 
     async function doLogin() {
         if (auth.email && auth.password) {
-            // Snart återkommer vi till AuthModel :)
             const result = await AuthModel.login(auth.email, auth.password);
 
             setIsLoggedIn(true);

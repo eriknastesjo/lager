@@ -5,7 +5,8 @@ import productModel from "../../models/products";
 export default function PickList({ route, navigation, setProducts }) {
     const { order } = route.params; // se i OrderList funktionen listOfOrders och vid 'Onpress'
 
-    console.log(order);
+    console.log(navigation);
+    // console.log(order);
     // console.log(setProducts);
 
     let canPick = true;

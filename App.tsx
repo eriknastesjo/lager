@@ -7,6 +7,9 @@ import warehouse from './assets/warehouse.jpg';
 import Home from './components/home/Home';
 import Pick from './components/pick/Pick';
 import Deliveries from './components/delivery/Deliveries';
+import Auth from './components/auth/Auth';
+import Invoices from './components/invoices/Invoices'
+import authModel from './models/auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
@@ -17,7 +20,9 @@ const Tab = createBottomTabNavigator();
 const routeIcons = {
   "Lager": "cog",
   "Plock": "cart",
-  "Inleverans": "gift-sharp"
+  "Inleverans": "gift-sharp",
+  "Logga in": "log-in",
+  "Faktura": "card"
 };
 
 export default function App() {
