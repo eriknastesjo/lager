@@ -62,6 +62,11 @@ return (
           <Tab.Screen name="Logga in">
             {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
           </Tab.Screen>
+          // debug nedan för att kunna testa login
+          // <Tab.Screen name="Logga in">
+          //   {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
+          // </Tab.Screen> :
+          // <Tab.Screen name="Faktura" component={Invoices} />
         }
       </Tab.Navigator>
     </NavigationContainer>

@@ -9,13 +9,10 @@ const Stack = createNativeStackNavigator();
 export default function Deliveries(props) {
 
     // console.log(props);
-    console.log("PROPS:");
-    console.log(props.setIsLoggedIn);
+    // console.log(props.setIsLoggedIn);
     return (
         <Stack.Navigator initialRouteName="LoginMenu">
-            <Stack.Screen name="LoginMenu">
-                {(screenProps) => <Choice {...screenProps} setIsLoggedIn={props.setIsLoggedIn} />}
-            </Stack.Screen>
+            <Stack.Screen name="LoginMenu" component={Choice}/>
             <Stack.Screen name="Login">
                 {(screenProps) => <Login {...screenProps} setIsLoggedIn={props.setIsLoggedIn} />}
             </Stack.Screen>

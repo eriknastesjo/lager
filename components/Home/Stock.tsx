@@ -18,17 +18,13 @@ function StockList({ products, setProducts }) {
 
     // console.log(list);  // ser konstigt ut men det blir en array full av Text-komponenter med key och props
 
-    return (
-        <View>
-            {list}
-        </View>
-    );
+    return list;
 }
 
 export default function Stock({ products, setProducts }) {
     return (
-        <View>
+        <ScrollView>
             <StockList products={products} setProducts={setProducts} />
-        </View>
+        </ScrollView>
     );
 }

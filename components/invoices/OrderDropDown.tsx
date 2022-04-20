@@ -17,7 +17,7 @@ export default function OrderDropDown(props) {
         .filter(order => order.status != "Fakturerad")
         .map((ord, index) => {
         productsHash[ord.id] = ord;
-        return <Picker.Item key={index} label={ord.name} value={ord.id} />;
+        return <Picker.Item key={index} label={ord.name + ' : ' + ord.id} value={ord.id} />;
     });
 
     return (

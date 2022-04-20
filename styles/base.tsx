@@ -9,5 +9,5 @@ export const base = {
 
 export const content = {
     marginLeft: 40,
-    marginRight: 40
+    marginRight: 40,
 }

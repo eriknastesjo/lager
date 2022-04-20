@@ -10,9 +10,7 @@ export default function Invoice(props) {
     return (
         <Stack.Navigator initialRouteName="List">
             <Stack.Screen name="List" component={InvoiceList} />
-            <Stack.Screen name="Form">
-                {(screenProps) => <InvoiceForm {...screenProps} setOrders={props.setOrders} />}
-            </Stack.Screen>
+            <Stack.Screen name="Form" component={InvoiceForm} />
         </Stack.Navigator>
     );
 }

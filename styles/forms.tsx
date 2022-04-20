@@ -6,5 +6,3 @@ export const input = {
     borderColor: "#ccc",
     borderRadius: 3,
 };
-
-

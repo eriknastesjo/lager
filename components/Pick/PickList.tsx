@@ -1,6 +1,7 @@
-import { View, Text, Button } from "react-native";
+import { ScrollView, View, Text, Button } from "react-native";
 import orderModel from "../../models/orders";
 import productModel from "../../models/products";
+import { Typography, Base } from "../../styles";
 
 export default function PickList({ route, navigation, setProducts }) {
     const { order } = route.params; // se i OrderList funktionen listOfOrders och vid 'Onpress'
@@ -30,7 +31,8 @@ export default function PickList({ route, navigation, setProducts }) {
 
     if (canPick) {
         return (
-            <View>
+            <ScrollView style={Base.content}>
+                <Text style={Typography.header2}>Order</Text>
                 <Text>{order.name}</Text>
                 <Text>{order.address}</Text>
                 <Text>{order.zip} {order.city}</Text>
@@ -39,16 +41,24 @@ export default function PickList({ route, navigation, setProducts }) {
 
                 {orderItemsList}
 
+                {/* {canPick === true &&
+                    <Button
+                        color='#A85D14'
+                        title="Plocka order"
+                        onPress={pick}
+                    />
+                } else ???*/}
+
                 <Button
-                    color='#A85D14'
+                    color="#4D4948"
                     title="Plocka order"
                     onPress={pick}
                 />
-            </View>
+            </ScrollView>
         )
     }
     return (
-        <View>
+        <ScrollView>
             <Text>{order.name}</Text>
             <Text>{order.address}</Text>
             <Text>{order.zip} {order.city}</Text>
@@ -59,6 +69,6 @@ export default function PickList({ route, navigation, setProducts }) {
 
             <Text>Otillräckligt i lagret!</Text>
 
-        </View>
+        </ScrollView>
     )
 };

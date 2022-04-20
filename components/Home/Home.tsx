@@ -7,11 +7,11 @@ import Stock from './Stock';
 
 export default function Home({ products, setProducts }) {
     return (
-        <View >
+        <ScrollView >
             <Text style={Typography.header1}>Lagerförteckning</Text>
-            <ScrollView style={Base.content}>
+            <View style={Base.content}>
                 <Stock products={products} setProducts={setProducts} />
-            </ScrollView>
-        </View>
+            </View>
+        </ScrollView>
     );
 }

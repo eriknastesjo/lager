@@ -1,15 +1,21 @@
 import { useState, useEffect } from 'react';
-import { View, Text, Button } from "react-native";
+import { View, ScrollView, Text, Button } from "react-native";
 import config from "../../config/config.json";
 import invoiceModel from '../../models/invoice';
 import storageModel from '../../models/storage';
-import { Typography } from '../../styles';
+import { Base, Table, Typography } from '../../styles';
+import { DataTable } from 'react-native-paper';
+
 
 export default function InvoiceList({ route, navigation, setProducts }) {
 
     const [allInvoices, setInvoices] = useState([]);
 
     const { reload } = route.params || true;
+
+    async function getToken() {
+        return await storageModel.readToken();
+    }
 
     if (reload) {
         reloadInvoices();
@@ -19,32 +25,42 @@ export default function InvoiceList({ route, navigation, setProducts }) {
         reloadInvoices();
     }, []);
 
-    async function getToken() {
-        return await storageModel.readToken();
-    }
-
     async function reloadInvoices() {
         setInvoices(await invoiceModel.getInvoices(await getToken()));
     }
 
     // console.log(allInvoices);
 
+    // <Text key={index} style={Typography.normal}> {invoice.name}</Text>
+
     // fyll på med mer text sen i en tabell!!!
-    const listOfInvoices = allInvoices
+    const table = allInvoices
         .map((invoice, index) => {
-            return <Text key={index} style={Typography.normal}> {invoice.name}</Text>
+            return (<DataTable.Row key={index}>
+                <DataTable.Cell>{invoice.name}</DataTable.Cell>
+                <DataTable.Cell numeric>{invoice.order_id}</DataTable.Cell>
+                <DataTable.Cell numeric>{invoice.total_price}</DataTable.Cell>
+            </DataTable.Row>)
         });
 
     return (
-        <View>
-            {listOfInvoices}
+        <ScrollView>
+            <Text style={Typography.header1}>Fakturor</Text>
+            <DataTable style={Table.table}>
+                <DataTable.Header>
+                    <DataTable.Title>Namn</DataTable.Title>
+                    <DataTable.Title numeric>Ordernummer</DataTable.Title>
+                    <DataTable.Title numeric>Totalpris</DataTable.Title>
+                </DataTable.Header>
+                {table}
+            </DataTable>
             <Button
-                color="#4D4948"
+                color='#A85D14'
                 title="Ny faktura"
                 onPress={() => {
-                    navigation.navigate('Form', setInvoices);
+                    navigation.navigate('Form');
                 }}
             />
-        </View>
+        </ScrollView>
     );
 }

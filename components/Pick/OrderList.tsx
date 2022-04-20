@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { View, Text, Button } from "react-native";
 import config from "../../config/config.json";
 import orderModel from '../../models/orders';
+import { Typography } from '../../styles';
 
 export default function OrderList({ route, navigation }) {
 
@@ -28,8 +29,8 @@ export default function OrderList({ route, navigation }) {
         .filter(order => order.status === "Ny")
         .map((order, index) => {
             return <Button
-                color="#4D4948"
-                title={order.name}
+                color='#A85D14'
+                title={order.name + " : " + order.id}
                 key={index}
                 onPress={() => {
                     navigation.navigate('Details', {
@@ -41,6 +42,7 @@ export default function OrderList({ route, navigation }) {
 
     return (
         <View>
+            <Text style={Typography.header1}>Ordrar</Text>
             {listOfOrders}
         </View>
     );
