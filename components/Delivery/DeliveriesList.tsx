@@ -6,6 +6,8 @@ import deliveryModel from '../../models/deliveries';
 
 export default function Deliveries({ route, navigation }) {
 
+    const [allDeliveries, setAllDeliveries] = useState([]);
+
     const { reload } = route.params || true;
 
     if (reload) {
@@ -16,8 +18,6 @@ export default function Deliveries({ route, navigation }) {
     async function reloadDeliveries() {
         setAllDeliveries(await deliveryModel.getDeliveries());
     }
-
-    const [allDeliveries, setAllDeliveries] = useState([]);
 
     useEffect(async () => {
         reloadDeliveries();

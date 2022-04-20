@@ -10,20 +10,23 @@ export default function OrderDropDown(props) {
     let productsHash: any = {};
 
     useEffect(async () => {
-        setProducts(await orderModel.getOrders());
+        setOrders(await orderModel.getOrders());
     }, []);
 
-    const itemsList = products.map((prod, index) => {
-        productsHash[prod.id] = prod;
-        return <Picker.Item key={index} label={prod.name} value={prod.id} />;
+    const itemsList = orders
+        .filter(order => order.status != "Fakturerad")
+        .map((ord, index) => {
+        productsHash[ord.id] = ord;
+        return <Picker.Item key={index} label={ord.name} value={ord.id} />;
     });
 
     return (
         <Picker
-            selectedValue={props.delivery?.product_id}
+            selectedValue={props.invoices?.order_id}
             onValueChange={(itemValue) => {
-                props.setDelivery({ ...props.delivery, product_id: itemValue });
-                props.setCurrentProduct(productsHash[itemValue]);
+                console.log(itemValue);
+                props.setInvoices({ ...props.invoices, order_id: itemValue });
+                props.setCurrentOrder(productsHash[itemValue]);
             }}>
             {itemsList}
         </Picker>

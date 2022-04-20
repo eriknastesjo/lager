@@ -7,8 +7,9 @@ import { Typography } from '../../styles';
 
 export default function InvoiceList({ route, navigation, setProducts }) {
 
+    const [allInvoices, setInvoices] = useState([]);
+
     const { reload } = route.params || true;
-    const [allInvoices, setAllInvoices] = useState([]);
 
     if (reload) {
         reloadInvoices();
@@ -23,7 +24,7 @@ export default function InvoiceList({ route, navigation, setProducts }) {
     }
 
     async function reloadInvoices() {
-        setAllInvoices(await invoiceModel.getInvoices(await getToken()));
+        setInvoices(await invoiceModel.getInvoices(await getToken()));
     }
 
     // console.log(allInvoices);
@@ -41,7 +42,7 @@ export default function InvoiceList({ route, navigation, setProducts }) {
                 color="#4D4948"
                 title="Ny faktura"
                 onPress={() => {
-                    navigation.navigate('Form');
+                    navigation.navigate('Form', setInvoices);
                 }}
             />
         </View>

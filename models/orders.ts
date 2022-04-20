@@ -10,6 +10,13 @@ const orderModel = {
 
         return result.data;
     },
+    getIndividualOrder: async function getIndividualOrder(orderId: Partial<Order>): Promise<Order[]> {
+
+        const response = await fetch(`${config.base_url}/orders/:${orderId}?api_key=${config.api_key}`);
+        const result = await response.json();
+
+        return result.data;
+    },
     pickOrder: async function pickOrder(order: Partial<Order>) {
         console.log(order);
         // Promise.all() itererar genom alla items och returnerar ett enda promise i form av array
@@ -42,7 +49,7 @@ const orderModel = {
                 'content-type': 'application/json'
             },
             method: 'PUT'
-        })
+        });
     }
 
 };

@@ -5,7 +5,6 @@ import { View, Text, Button } from "react-native";
 
 export default function LoginMenu({navigation}) {
 
-    console.log(navigation);
 
     function goToLogin() {
         navigation.navigate("Login");

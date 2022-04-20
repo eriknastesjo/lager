@@ -16,7 +16,8 @@ async function addDelivery(navigation, delivery, setProducts) {
 }
 
 export default function DeliveryForm({ navigation }, setProducts) {
-    const [delivery, setDelivery] = useState<Partial<Delivery>>({});
+    // Dont have this state here - use one above?
+    const [delivery, setDelivery] = useState<Partial<Delivery>>({});    // todo: fixa delivery state från props istället!
     const [currentProduct, setCurrentProduct] = useState<Product[]>([]);
 
     return (

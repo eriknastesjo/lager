@@ -5,13 +5,13 @@ import InvoiceForm from './InvoiceForm';
 
 const Stack = createNativeStackNavigator();
 
-export default function Pick(props) {
-    // console.log(props);
+export default function Invoice(props) {
+    console.log(props);
     return (
         <Stack.Navigator initialRouteName="List">
             <Stack.Screen name="List" component={InvoiceList} />
             <Stack.Screen name="Form">
-                {(screenProps) => <InvoiceForm {...screenProps} setProducts={props.setProducts} />}
+                {(screenProps) => <InvoiceForm {...screenProps} setOrders={props.setOrders} />}
             </Stack.Screen>
         </Stack.Navigator>
     );

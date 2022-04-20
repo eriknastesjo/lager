@@ -6,10 +6,14 @@ import AuthFields from './Authfields';
 export default function Register({ navigation, setIsLoggedIn }) {
     const [auth, setAuth] = useState<Partial<Auth>>({});
 
-    async function doLogin() {
+    console.log("SETITLOGGED IN: ");
+    console.log(setIsLoggedIn);
+
+    async function doRegister() {
         if (auth.email && auth.password) {
-            const result = await AuthModel.login(auth.email, auth.password);
-            setIsLoggedIn(true);
+            const result = await AuthModel.register(auth.email, auth.password);
+            // setIsLoggedIn(true);
+            navigation.navigate("Login");
         }
     }
 
@@ -17,7 +21,7 @@ export default function Register({ navigation, setIsLoggedIn }) {
         <AuthFields
             auth={auth}
             setAuth={setAuth}
-            submit={doLogin}
+            submit={doRegister}
             title="Registrera dig"
             navigation={navigation}
         />
