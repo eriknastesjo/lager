@@ -27,7 +27,10 @@ export const normal = {
     marginBottom: 10,
 };
 
-export const label = {
+export const cursive = {
+    fontStyle: 'italic'
+}
 
-};
-
+export const bold = {
+    fontWeight: 'bold'
+}

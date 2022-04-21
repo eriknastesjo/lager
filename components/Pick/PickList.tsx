@@ -29,36 +29,9 @@ export default function PickList({ route, navigation, setProducts }) {
         </Text>;
     });
 
-    if (canPick) {
-        return (
-            <ScrollView style={Base.content}>
-                <Text style={Typography.header2}>Order</Text>
-                <Text>{order.name}</Text>
-                <Text>{order.address}</Text>
-                <Text>{order.zip} {order.city}</Text>
-
-                <Text>Produkter:</Text>
-
-                {orderItemsList}
-
-                {/* {canPick === true &&
-                    <Button
-                        color='#A85D14'
-                        title="Plocka order"
-                        onPress={pick}
-                    />
-                } else ???*/}
-
-                <Button
-                    color="#4D4948"
-                    title="Plocka order"
-                    onPress={pick}
-                />
-            </ScrollView>
-        )
-    }
     return (
-        <ScrollView>
+        <ScrollView style={Base.content}>
+            <Text style={Typography.header2}>Order { order.id }</Text>
             <Text>{order.name}</Text>
             <Text>{order.address}</Text>
             <Text>{order.zip} {order.city}</Text>
@@ -67,8 +40,15 @@ export default function PickList({ route, navigation, setProducts }) {
 
             {orderItemsList}
 
-            <Text>Otillräckligt i lagret!</Text>
-
+            {canPick ?
+                <Button
+                    color='#A85D14'
+                    title="Plocka order"
+                    onPress={pick}
+                /> :
+                <Text>Otillräckligt i lagret!</Text>
+            }
         </ScrollView>
     )
+
 };

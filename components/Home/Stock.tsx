@@ -14,7 +14,7 @@ function StockList({ products, setProducts }) {
 
     // console.log(products);
 
-    const list = products.map((product, index) => <Text key={index} style={Typography.normal}> {product.name} ({product.stock} st)</Text>);
+    const list = products.map((product, index) => <Text key={index} style={Typography.normal}> {product.name} : { product.id } ({product.stock} st)</Text>);
 
     // console.log(list);  // ser konstigt ut men det blir en array full av Text-komponenter med key och props
 

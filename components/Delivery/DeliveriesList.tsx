@@ -27,12 +27,15 @@ export default function Deliveries({ route, navigation }) {
     } (antal: {delivery.amount} st, levererad: {delivery.delivery_date}, kommentar: {delivery.comment})</Text>);
 
 
-    if (list.length !== 0) {
+ {
         return (
             <View>
                 <Text style={Typography.header1}>Inleveranser</Text>
                 <ScrollView style={Base.content}>
-                    {list}
+                    {list.length !== 0 ?
+                        list :
+                        <Text style={Typography.normal}>Inga inleveranser registrerade.</Text>
+                    }
                 </ScrollView>
                 <Button
                     title="Ny inleverans"
@@ -44,20 +47,5 @@ export default function Deliveries({ route, navigation }) {
             </View>
         );
     }
-    return (
-        <View>
-            <Text style={Typography.header1}>Inleveranser</Text>
-            <ScrollView style={Base.content}>
-                <Text style={Typography.normal}>Inga inleveranser registrerade.</Text>
-            </ScrollView>
-            <Button
-                title="Ny inleverans"
-                color='#A85D14'
-                onPress={() => {
-                    navigation.navigate('Form');
-                }}
-            />
-        </View>
-    );
 };
 
