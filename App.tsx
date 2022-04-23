@@ -3,7 +3,6 @@ import { Base, Header } from './styles/index';
 import { StatusBar } from 'expo-status-bar';
 import { Image, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import warehouse from './assets/warehouse.jpg';
 import Home from './components/home/Home';
 import Pick from './components/pick/Pick';
 import Deliveries from './components/delivery/Deliveries';
@@ -37,7 +36,7 @@ export default function App() {
 return (
   <SafeAreaView style={Base.container}>
     <Text style={Header.title}>Lager-Apan</Text>
-    <Image source={warehouse} style={Header.image}/>
+
     <NavigationContainer>
       <Tab.Navigator screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
@@ -62,6 +61,7 @@ return (
           <Tab.Screen name="Logga in">
             {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
           </Tab.Screen>
+
           // debug nedan för att kunna testa login
           // <Tab.Screen name="Logga in">
           //   {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
