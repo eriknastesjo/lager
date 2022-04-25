@@ -8,6 +8,7 @@ import Pick from './components/pick/Pick';
 import Deliveries from './components/delivery/Deliveries';
 import Auth from './components/auth/Auth';
 import Invoices from './components/invoices/Invoices'
+import Ship from './components/ship/Ship'
 import authModel from './models/auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -21,12 +22,14 @@ const routeIcons = {
   "Plock": "cart",
   "Inleverans": "gift-sharp",
   "Logga in": "log-in",
-  "Faktura": "card"
+  "Faktura": "card",
+  "Leveranser": "airplane"
 };
 
 export default function App() {
 
   const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
 
   useEffect(async () => {
@@ -50,18 +53,21 @@ return (
         <Tab.Screen name="Lager">
           {() => <Home products={products} setProducts={setProducts} />}
         </Tab.Screen>
-        <Tab.Screen name="Plock">
-          {() => <Pick products={products} setProducts={setProducts} />}
-        </Tab.Screen>
         <Tab.Screen name="Inleverans">
           {() => <Deliveries setProducts={setProducts} />}
         </Tab.Screen>
+        <Tab.Screen name="Plock">
+          {() => <Pick products={products} setProducts={setProducts} />}
+        </Tab.Screen>
+        <Tab.Screen name="Leveranser" component={Ship} />
+        {/* <Tab.Screen name="Leveranser">
+          {() => <ShipList orders={orders} setOrders={setOrders} />}
+        </Tab.Screen> */}
         {isLoggedIn ?
           <Tab.Screen name="Faktura" component={Invoices} /> :
           <Tab.Screen name="Logga in">
             {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
           </Tab.Screen>
-
           // debug nedan för att kunna testa login
           // <Tab.Screen name="Logga in">
           //   {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
