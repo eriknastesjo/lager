@@ -27,6 +27,14 @@ export const normal = {
     marginBottom: 10,
 };
 
+export const normalCenter = {
+    textAlign: "center",
+    color: '#333',
+    fontSize: 17,
+    fontFamily: "sans-serif",
+    marginBottom: 10,
+};
+
 export const cursive = {
     fontStyle: 'italic'
 }

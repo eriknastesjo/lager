@@ -25,7 +25,7 @@ export default function OrderList({ navigation, route }) {
         reloadOrders();
     }, []);
 
-    // console.log(allOrders);
+    console.log(allOrders);
 
     const listOfOrders = allOrders
         .filter(order => order.status === "Packad")
