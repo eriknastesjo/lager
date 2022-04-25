@@ -39,7 +39,7 @@ export default function InvoiceList({ route, navigation, setProducts }) {
             return (<DataTable.Row key={index}>
                 <DataTable.Cell>{invoice.name}</DataTable.Cell>
                 <DataTable.Cell numeric>{invoice.order_id}</DataTable.Cell>
-                <DataTable.Cell numeric>{invoice.total_price}</DataTable.Cell>
+                <DataTable.Cell numeric>{invoice.total_price} :-</DataTable.Cell>
             </DataTable.Row>)
         });
 
