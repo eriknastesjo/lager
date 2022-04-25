@@ -22,9 +22,7 @@ export default function PickList({ route, navigation, setProducts }) {
         if (item.amount > item.stock) {
             canPick = false;
         }
-        return <Text
-            key={index}
-        >
+        return <Text key={index} style={Typography.normal}>
             {item.name}, antal: {item.amount} st, plats: {item.location}
         </Text>;
     });
@@ -32,11 +30,11 @@ export default function PickList({ route, navigation, setProducts }) {
     return (
         <ScrollView style={Base.content}>
             <Text style={Typography.header2}>Order { order.id }</Text>
-            <Text>{order.name}</Text>
-            <Text>{order.address}</Text>
-            <Text>{order.zip} {order.city}</Text>
+            <Text style={Typography.normal}>{order.name}</Text>
+            <Text style={Typography.normal}>{order.address}</Text>
+            <Text style={Typography.normal}>{order.zip} {order.city}</Text>
 
-            <Text>Produkter:</Text>
+            <Text style={Typography.normal}>Produkter:</Text>
 
             {orderItemsList}
 
@@ -46,7 +44,7 @@ export default function PickList({ route, navigation, setProducts }) {
                     title="Plocka order"
                     onPress={pick}
                 /> :
-                <Text>Otillräckligt i lagret!</Text>
+                <Text style={Typography.normal}>Otillräckligt i lagret!</Text>
             }
         </ScrollView>
     )
