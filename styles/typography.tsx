@@ -35,6 +35,15 @@ export const normalCenter = {
     marginBottom: 10,
 };
 
+export const boldCenter = {
+    textAlign: "center",
+    color: '#333',
+    fontSize: 17,
+    fontFamily: "sans-serif",
+    marginBottom: 10,
+    fontWeight: 'bold'
+};
+
 export const cursive = {
     fontStyle: 'italic'
 }

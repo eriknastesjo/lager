@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Text, View, ScrollView, StyleSheet } from 'react-native';
 import config from "../../config/config.json";
-import { Typography } from '../../styles/index';
+import { Typography, Table } from '../../styles/index';
 import productModel from '../../models/products';
+import { DataTable } from 'react-native-paper';
 
 function StockList({ products, setProducts }) {
     // const [products, setProducts] = useState([]);
@@ -12,11 +13,17 @@ function StockList({ products, setProducts }) {
         setProducts(await productModel.getProducts());
     }, []);
 
-    // console.log(products);
 
-    const list = products.map((product, index) => <Text key={index} style={Typography.normal}> {product.name} : { product.id } ({product.stock} st)</Text>);
+    // const list = products.map((product, index) => <Text key={index} style={Typography.normal}> {product.name} : { product.id } ({product.stock} st)</Text>);
 
-    // console.log(list);  // ser konstigt ut men det blir en array full av Text-komponenter med key och props
+    const list = products
+        .map((product, index) => {
+            return (<DataTable.Row key={index}>
+                <DataTable.Cell textStyle={Typography.normalCenter}>{product.name}</DataTable.Cell>
+                <DataTable.Cell numeric textStyle={Typography.normalCenter}>{product.id}</DataTable.Cell>
+                <DataTable.Cell numeric textStyle={Typography.normalCenter}>{product.stock}</DataTable.Cell>
+            </DataTable.Row>)
+        });
 
     return list;
 }
@@ -24,7 +31,14 @@ function StockList({ products, setProducts }) {
 export default function Stock({ products, setProducts }) {
     return (
         <ScrollView>
-            <StockList products={products} setProducts={setProducts} />
+            <DataTable style={Table.table}>
+                <DataTable.Header>
+                    <DataTable.Title>Produktnamn</DataTable.Title>
+                    <DataTable.Title numeric>Id</DataTable.Title>
+                    <DataTable.Title numeric>Antal</DataTable.Title>
+                </DataTable.Header>
+                <StockList products={products} setProducts={setProducts} />
+            </DataTable>
         </ScrollView>
     );
 }

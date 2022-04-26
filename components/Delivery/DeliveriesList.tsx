@@ -1,8 +1,9 @@
 // del av components/DeliveriesList.tsx
 import { useState, useEffect } from 'react';
 import { Button, Text, View, ScrollView} from 'react-native';
-import { Base, Typography } from '../../styles/index';
+import { Base, Typography, Table } from '../../styles/index';
 import deliveryModel from '../../models/deliveries';
+import { DataTable } from 'react-native-paper';
 
 export default function Deliveries({ route, navigation }) {
 
@@ -24,20 +25,39 @@ export default function Deliveries({ route, navigation }) {
         reloadDeliveries();
     }, []);
 
-    const list = allDeliveries.map((delivery, index) => <Text key={index} style={Typography.normal}> {delivery.product_name
-    } (antal: {delivery.amount} st, levererad: {delivery.delivery_date}, kommentar: {delivery.comment})</Text>);
+    // const list = allDeliveries.map((delivery, index) => <Text key={index} style={Typography.normal}> {delivery.product_name
+    // } (antal: {delivery.amount} st, levererad: {delivery.delivery_date}, kommentar: {delivery.comment})</Text>);
+
+    const list = allDeliveries
+        .map((delivery, index) => {
+            return (<View key = { index }>
+                <DataTable.Row>
+                    <DataTable.Cell textStyle={Typography.boldCenter}>{delivery.product_name}</DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row>
+                    <DataTable.Cell textStyle={Typography.normalCenter}>Antal</DataTable.Cell>
+                    <DataTable.Cell textStyle={Typography.normalCenter}>{delivery.amount}</DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row>
+                    <DataTable.Cell textStyle={Typography.normalCenter}>Leveransdatum</DataTable.Cell>
+                    <DataTable.Cell textStyle={Typography.normalCenter}>{delivery.delivery_date}</DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row>
+                    <DataTable.Cell textStyle={Typography.normalCenter}>Kommentar</DataTable.Cell>
+                    <DataTable.Cell textStyle={Typography.normalCenter}>{delivery.comment}</DataTable.Cell>
+                </DataTable.Row>
+
+            </View>)
+        });
 
 
- {
-        return (
-            <View>
+
+    return (
+        <View>
+
+            <ScrollView>
                 <Text style={Typography.header1}>Inleveranser</Text>
-                <ScrollView style={Base.content}>
-                    {list.length !== 0 ?
-                        list :
-                        <Text style={Typography.normal}>Inga inleveranser registrerade.</Text>
-                    }
-                </ScrollView>
+
                 <Button
                     title="Ny inleverans"
                     color='#A85D14'
@@ -45,8 +65,19 @@ export default function Deliveries({ route, navigation }) {
                         navigation.navigate('Form');
                     }}
                 />
-            </View>
-        );
-    }
+
+                {list.length !== 0 ?
+                    <DataTable style={Table.table}>
+                        { list }
+                    </DataTable>
+                    :
+                    <Text style={Typography.normal}>Inga inleveranser registrerade.</Text>
+                }
+
+            </ScrollView>
+
+        </View>
+    );
+
 };
 
