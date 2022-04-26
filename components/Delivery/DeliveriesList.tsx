@@ -8,11 +8,11 @@ export default function Deliveries({ route, navigation }) {
 
     const [allDeliveries, setDeliveries] = useState([]);
 
-    const { reload } = route.params || true;
+    let { reload } = route.params || true;
 
     if (reload) {
         reloadDeliveries();
-        console.log("reload!");
+        route.params = false;
     }
 
     async function reloadDeliveries() {

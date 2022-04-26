@@ -6,7 +6,9 @@ import { Typography, Base } from "../../styles";
 export default function PickList({ route, navigation, setProducts }) {
     const { order } = route.params; // se i OrderList funktionen listOfOrders och vid 'Onpress'
 
-    console.log(navigation);
+    console.log(setProducts);
+
+    // console.log(navigation);
     // console.log(order);
     // console.log(setProducts);
 
