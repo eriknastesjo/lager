@@ -6,24 +6,23 @@ import { Typography } from '../../styles';
 
 export default function OrderList({ route, navigation }) {
 
-    // console.log(route);
 
+    const [allOrders, setAllOrders] = useState([]);
     const { reload } = route.params || true;
 
     if (reload) {
         reloadOrders();
-        console.log("reload!");
+        route.params = false;
     }
+
+    useEffect(async () => {
+        reloadOrders();
+    }, []);
 
     async function reloadOrders() {
         setAllOrders(await orderModel.getOrders());
     }
 
-    const [allOrders, setAllOrders] = useState([]);
-
-    useEffect(async () => {
-        reloadOrders();
-    }, []);
 
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")
