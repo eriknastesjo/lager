@@ -4,10 +4,11 @@ import config from "../../config/config.json";
 import orderModel from '../../models/orders';
 import { Typography } from '../../styles';
 
-export default function OrderList({ navigation, route }) {
+export default function OrderList({ navigation, route, orders, setOrders }) {
 
     // console.log(route);
 
+    // const [allOrders, setAllOrders] = useState([]);
     const { reload } = route.params || true;
 
     if (reload) {
@@ -16,18 +17,17 @@ export default function OrderList({ navigation, route }) {
     }
 
     async function reloadOrders() {
-        setAllOrders(await orderModel.getOrders());
+        setOrders(await orderModel.getOrders());
     }
 
-    const [allOrders, setAllOrders] = useState([]);
 
     useEffect(async () => {
         reloadOrders();
     }, []);
 
-    console.log(allOrders);
+    console.log(orders);
 
-    const listOfOrders = allOrders
+    const listOfOrders = orders
         .filter(order => order.status !== "Ny") // kanske ändra till att måste ha just status "Plockad"?
         .map((order, index) => {
             return <Button

@@ -18,7 +18,7 @@ const orderModel = {
         return result.data;
     },
     pickOrder: async function pickOrder(order: Partial<Order>) {
-        console.log(order);
+        // console.log(order);
         // Promise.all() itererar genom alla items och returnerar ett enda promise i form av array
         Promise.all(order.order_items.map(async (order_item: Partial<OrderItem>) => {
             let changedProduct = {

@@ -9,22 +9,35 @@ import invoiceModel from "../../models/invoice";
 import orderModel from "../../models/orders";
 import storageModel from '../../models/storage';
 
-async function addInvoice(navigation, invoice, currentOrder) {
+async function addInvoice(navigation, invoice, currentOrder, setOrders) {
     let totalPrice = 0;
+
+    console.log("CUUUURREEEEEENT");
+    console.log(currentOrder);
+    console.log("INVOOOOIIIIICE");
+    console.log(invoice);
+
     currentOrder.order_items.map((order_item, index) => {
         totalPrice += order_item.price * order_item.amount;
     });
 
+    // console.log(navigation);
+
     invoice['total_price'] = totalPrice;
 
+    await invoiceModel.setInvoice(await storageModel.readToken(), invoice);
+    setOrders(await orderModel.getOrders());
     navigation.navigate("List", { reload: true });
-    await invoiceModel.setInvoice(await storageModel.readToken(), invoice);  // todo: lägg in setinvoice i invoiceModel
-    // setOrders(await orderModel.getOrders());     // todo: har inte skapat order state och skickat vidare från App.tsx än
 }
 
-export default function InvoiceForm({ navigation }) {
-    const [invoices, setInvoices] = useState<Partial<Invoice>>({});    // todo: fixa setInvoices från props istället!
+export default function InvoiceForm({ navigation, orders, setOrders }) {
+    const [invoices, setInvoices] = useState<Partial<Invoice>>({});
     const [currentOrder, setCurrentOrder] = useState<Order[]>([]);
+
+    console.log("CURRENT ORDER");
+    console.log(currentOrder);
+    console.log("CURRENT INVOICES");
+    console.log(invoices);
 
     return (
         <ScrollView style={Base.content}>
@@ -36,13 +49,15 @@ export default function InvoiceForm({ navigation }) {
                 setInvoices={setInvoices}
                 setCurrentOrder={setCurrentOrder}
                 required="required"
+                orders={orders}
+                setOrders={setOrders}
             />
 
             <Button
                 title="Skapa faktura"
                 color="#4D4948"
                 onPress={() => {
-                    addInvoice(navigation, invoices, currentOrder);
+                    addInvoice(navigation, invoices, currentOrder, setOrders);
                 }}
             />
 

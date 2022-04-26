@@ -61,12 +61,15 @@ return (
             products={products} setProducts={setProducts}
             orders={orders} setOrders={setOrders} />}
         </Tab.Screen>
-        <Tab.Screen name="Leveranser" component={Ship} />
-        {/* <Tab.Screen name="Leveranser">
-          {() => <ShipList orders={orders} setOrders={setOrders} />}
-        </Tab.Screen> */}
+        {/* <Tab.Screen name="Leveranser" component={Ship} /> */}
+        <Tab.Screen name="Leveranser">
+          {() => <Ship orders={orders} setOrders={setOrders} />}
+        </Tab.Screen>
         {isLoggedIn ?
-          <Tab.Screen name="Faktura" component={Invoices} /> :
+          <Tab.Screen name="Faktura">
+            {() => <Invoices orders={orders} setOrders={setOrders} />}
+          </Tab.Screen>
+          :
           <Tab.Screen name="Logga in">
             {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
           </Tab.Screen>

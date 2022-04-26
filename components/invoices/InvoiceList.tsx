@@ -7,7 +7,7 @@ import { Base, Table, Typography } from '../../styles';
 import { DataTable } from 'react-native-paper';
 
 
-export default function InvoiceList({ route, navigation, setProducts }) {
+export default function InvoiceList({ route, navigation }) {
 
     const [allInvoices, setInvoices] = useState([]);
 
@@ -18,7 +18,9 @@ export default function InvoiceList({ route, navigation, setProducts }) {
     }
 
     if (reload) {
+        console.log("reload");
         reloadInvoices();
+        route.params = false;
     }
 
     useEffect(async () => {

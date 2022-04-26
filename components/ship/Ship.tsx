@@ -9,10 +9,10 @@ export default function Ship(props) {
     // console.log(props);
     return (
         <Stack.Navigator initialRouteName="List">
-            <Stack.Screen name="List" component={ShipList} />
-            {/* <Stack.Screen name="List">
-                {(screenProps2) => <OrderList {...screenProps2} setProducts={props.setProducts} />}
-            </Stack.Screen> */}
+            {/* <Stack.Screen name="List" component={ShipList} /> */}
+            <Stack.Screen name="List">
+                {(screenProps2) => <ShipList {...screenProps2} orders={props.orders} setOrders={props.setOrders} />}
+            </Stack.Screen>
 
             <Stack.Screen name="Details" component={ShipOrder} />
             {/* <Stack.Screen name="Details"> */}

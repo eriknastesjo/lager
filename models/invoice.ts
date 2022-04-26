@@ -31,9 +31,9 @@ const invoiceModel = {
 
         const inv = { ...invoice, api_key: config.api_key };
 
-        console.log(inv);
+        // console.log(inv);
 
-        console.log(tokenObj.token);
+        // console.log(tokenObj.token);
 
 
         await fetch(`${config.base_url}/invoices`, {

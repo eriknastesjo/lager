@@ -19,7 +19,7 @@ export default function DeliveryForm({ navigation, setProducts }) {
     const [delivery, setDelivery] = useState<Partial<Delivery>>({});
     const [currentProduct, setCurrentProduct] = useState<Product[]>([]);
 
-    console.log(setProducts);
+    // console.log(navigation);
 
     return (
         <ScrollView style={Base.content }>
