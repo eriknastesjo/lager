@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { Base, Typography } from "../../styles";
+import { Text, View, ScrollView, StyleSheet } from "react-native";
+import { Base, Typography, Table } from "../../styles";
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import getCoordinates from '../../models/nominatim';
 import * as Location from 'expo-location';
+import { DataTable } from 'react-native-paper';
 
 export default function ShipOrder({ route }) {
     const { order } = route.params;
@@ -56,13 +57,46 @@ export default function ShipOrder({ route }) {
         })();
     }, []);
 
+
+    // const orderItemsTable = order.order_items.map((item, index) => {
+    //     return <Text key={index} style={Typography.normal}>
+    //         {item.name}, antal: {item.amount} st, plats: {item.location}
+    //     </Text>;
+    // });
+
+    const orderItemsTable = order.order_items
+        .map((item, index) => {
+            return (<DataTable.Row key={index}>
+                <DataTable.Cell>{item.name}</DataTable.Cell>
+                <DataTable.Cell>{item.amount}</DataTable.Cell>
+                <DataTable.Cell>{item.location}</DataTable.Cell>
+            </DataTable.Row>)
+        });
+
+
     return (
         <View style={Base.base}>
-            <Text style={Typography.header2}>Skicka order</Text>
+            <View style={Base.content}>
+                <Text style={Typography.header2}>Order {order.id}</Text>
+                <Text style={Typography.normal}>{order.name}</Text>
+                <Text style={Typography.normal}>{order.address}</Text>
+                <Text style={Typography.normal}>{order.zip} {order.city}</Text>
 
-            <Text style={Typography.normalCenter}>{order.name} : {order.id}</Text>
-            <Text style={Typography.normalCenter}>{order.address}</Text>
-            <Text style={Typography.normalCenter}>{order.city}, {order.country}</Text>
+                {/* OBS OM INTE FUNKAR MED MARGINALER I TABELL BARA SKRIV UT DET OVAN... */}
+
+                <DataTable style={Table.table}>
+                    <DataTable.Header>
+                        <DataTable.Title>Produktnamn</DataTable.Title>
+                        <DataTable.Title>Antal</DataTable.Title>
+                        <DataTable.Title>Plats</DataTable.Title>
+                    </DataTable.Header>
+                    {orderItemsTable}
+                </DataTable>
+
+                {/* <Text style={Typography.normal}>Produkter:</Text>
+
+                {orderItemsTable} */}
+            </View>
             <View style={styles.container}>
                 <MapView
                     loadingEnabled={true}

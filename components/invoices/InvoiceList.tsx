@@ -29,11 +29,6 @@ export default function InvoiceList({ route, navigation, setProducts }) {
         setInvoices(await invoiceModel.getInvoices(await getToken()));
     }
 
-    // console.log(allInvoices);
-
-    // <Text key={index} style={Typography.normal}> {invoice.name}</Text>
-
-    // fyll på med mer text sen i en tabell!!!
     const table = allInvoices
         .map((invoice, index) => {
             return (<DataTable.Row key={index}>
