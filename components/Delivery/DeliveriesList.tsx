@@ -11,11 +11,13 @@ export default function Deliveries({ route, navigation }) {
     let { reload } = route.params || true;
 
     if (reload) {
+        console.log("reload");
         reloadDeliveries();
         route.params = false;
     }
 
     async function reloadDeliveries() {
+        console.log("get deliveries");
         setDeliveries(await deliveryModel.getDeliveries());
     }
 

@@ -10,14 +10,13 @@ import productModel from "../../models/products";
 import deliveryModel from "../../models/deliveries";
 
 async function addDelivery(navigation, delivery, setProducts) {
-    navigation.navigate("List", { reload: true });
     await deliveryModel.setDelivery(delivery);
     setProducts(await productModel.getProducts());
+    navigation.navigate("List", { reload: true });
 }
 
 export default function DeliveryForm({ navigation, setProducts }) {
-    // Dont have this state here - use one above?
-    const [delivery, setDelivery] = useState<Partial<Delivery>>({});    // todo: fixa delivery state från props istället!
+    const [delivery, setDelivery] = useState<Partial<Delivery>>({});
     const [currentProduct, setCurrentProduct] = useState<Product[]>([]);
 
     console.log(setProducts);
