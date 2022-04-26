@@ -4,10 +4,8 @@ import config from "../../config/config.json";
 import orderModel from '../../models/orders';
 import { Typography } from '../../styles';
 
-export default function OrderList({ route, navigation }) {
+export default function OrderList({ route, navigation, orders, setOrders }) {
 
-
-    const [allOrders, setAllOrders] = useState([]);
     const { reload } = route.params || true;
 
     if (reload) {
@@ -20,11 +18,11 @@ export default function OrderList({ route, navigation }) {
     }, []);
 
     async function reloadOrders() {
-        setAllOrders(await orderModel.getOrders());
+        setOrders(await orderModel.getOrders());
     }
 
 
-    const listOfOrders = allOrders
+    const listOfOrders = orders
         .filter(order => order.status === "Ny")
         .map((order, index) => {
             return <Button
