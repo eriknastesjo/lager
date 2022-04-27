@@ -32,7 +32,11 @@ export default function Deliveries({ route, navigation }) {
         .map((delivery, index) => {
             return (<View key = { index }>
                 <DataTable.Row>
-                    <DataTable.Cell textStyle={Typography.boldCenter}>{delivery.product_name}</DataTable.Cell>
+                    <DataTable.Cell textStyle={Typography.boldCenter}> Leverans id { delivery.id }</DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row>
+                    <DataTable.Cell textStyle={Typography.normalCenter}>{delivery.product_name}</DataTable.Cell>
+                    <DataTable.Cell textStyle={Typography.normalCenter}>{delivery.product_id}</DataTable.Cell>
                 </DataTable.Row>
                 <DataTable.Row>
                     <DataTable.Cell textStyle={Typography.normalCenter}>Antal</DataTable.Cell>

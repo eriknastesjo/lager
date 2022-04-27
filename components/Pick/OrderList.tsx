@@ -40,7 +40,10 @@ export default function OrderList({ route, navigation, orders, setOrders }) {
     return (
         <View>
             <Text style={Typography.header1}>Ordrar</Text>
-            {listOfOrders}
+            {listOfOrders.length > 0 ?
+                listOfOrders :
+                <Text>Inga ordrar är redo att plockas.</Text>
+            }
         </View>
     );
 }

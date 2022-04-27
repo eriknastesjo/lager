@@ -14,7 +14,7 @@ export default function ProductDropDown(props) {
 
     const itemsList = products.map((prod, index) => {
         productsHash[prod.id] = prod;
-        return <Picker.Item key={index} label={prod.name} value={prod.id} />;
+        return <Picker.Item key={index} label={prod.name + " : " + prod.id} value={prod.id} />;
     });
 
     return (

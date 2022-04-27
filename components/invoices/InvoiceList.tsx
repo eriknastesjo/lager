@@ -9,9 +9,11 @@ import { DataTable } from 'react-native-paper';
 
 export default function InvoiceList({ route, navigation }) {
 
-    const [allInvoices, setInvoices] = useState([]);
+    const [invoices, setInvoices] = useState([]);
 
     const { reload } = route.params || true;
+
+    let noInvoicesRegistred = true;
 
     async function getToken() {
         return await storageModel.readToken();
@@ -31,8 +33,9 @@ export default function InvoiceList({ route, navigation }) {
         setInvoices(await invoiceModel.getInvoices(await getToken()));
     }
 
-    const table = allInvoices
+    const table = invoices
         .map((invoice, index) => {
+            noInvoicesRegistred = false;
             return (<DataTable.Row key={index}>
                 <DataTable.Cell>{invoice.name}</DataTable.Cell>
                 <DataTable.Cell numeric>{invoice.order_id}</DataTable.Cell>
@@ -43,14 +46,7 @@ export default function InvoiceList({ route, navigation }) {
     return (
         <ScrollView>
             <Text style={Typography.header1}>Fakturor</Text>
-            <DataTable style={Table.table}>
-                <DataTable.Header>
-                    <DataTable.Title>Namn</DataTable.Title>
-                    <DataTable.Title numeric>Ordernummer</DataTable.Title>
-                    <DataTable.Title numeric>Totalpris</DataTable.Title>
-                </DataTable.Header>
-                {table}
-            </DataTable>
+
             <Button
                 color='#A85D14'
                 title="Ny faktura"
@@ -58,6 +54,19 @@ export default function InvoiceList({ route, navigation }) {
                     navigation.navigate('Form');
                 }}
             />
+
+            {noInvoicesRegistred === false ?
+                <DataTable style={Table.table}>
+                    <DataTable.Header>
+                        <DataTable.Title>Namn</DataTable.Title>
+                        <DataTable.Title numeric>Ordernummer</DataTable.Title>
+                        <DataTable.Title numeric>Totalpris</DataTable.Title>
+                    </DataTable.Header>
+                    {table}
+                </DataTable>
+                :
+                <Text style={Typography.normal}>Inga fakturor registrerade.</Text>
+        }
         </ScrollView>
     );
 }

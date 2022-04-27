@@ -76,9 +76,9 @@ export default function ShipOrder({ route }) {
     const orderItemsTable = order.order_items
         .map((item, index) => {
             return (<DataTable.Row key={index}>
-                <DataTable.Cell>{item.name}</DataTable.Cell>
-                <DataTable.Cell>{item.amount}</DataTable.Cell>
-                <DataTable.Cell>{item.location}</DataTable.Cell>
+                <DataTable.Cell textStyle={Typography.normalCenter}>{item.name}</DataTable.Cell>
+                <DataTable.Cell textStyle={Typography.normalCenter}>{item.amount}</DataTable.Cell>
+                <DataTable.Cell textStyle={Typography.normalCenter}>{item.location}</DataTable.Cell>
             </DataTable.Row>)
         });
 
@@ -86,7 +86,7 @@ export default function ShipOrder({ route }) {
     return (
         <View style={Base.base}>
             <View style={Base.content}>
-                <Text style={Typography.header2}>Order {order.id}</Text>
+                <Text style={Typography.header2}>Order {order.id} att skicka</Text>
                 <Text style={Typography.normal}>{order.name}</Text>
                 <Text style={Typography.normal}>{order.address}</Text>
                 <Text style={Typography.normal}>{order.zip} {order.city}</Text>
