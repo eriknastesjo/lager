@@ -28,7 +28,7 @@ export default function OrderList({ navigation, route, orders, setOrders }) {
     console.log(orders);
 
     const listOfOrders = orders
-        .filter(order => order.status !== "Ny") // kanske ändra till att måste ha just status "Plockad"?
+        .filter(order => order.status === "Packad") // kanske ändra till att måste ha just status "Plockad"?
         .map((order, index) => {
             return <Button
                 color='#A85D14'
