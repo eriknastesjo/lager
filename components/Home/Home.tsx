@@ -11,10 +11,7 @@ export default function Home({ products, setProducts }) {
     return (
         <ScrollView >
             <Image source={warehouse} style={Header.image} />
-            <Text style={Typography.header1}>Lagerförteckning</Text>
-            <View style={Base.content}>
-                <Stock products={products} setProducts={setProducts} />
-            </View>
+            <Stock products={products} setProducts={setProducts} />
         </ScrollView>
     );
 }
