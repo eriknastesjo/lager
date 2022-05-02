@@ -23,7 +23,7 @@ export default function Login({ navigation, setIsLoggedIn }) {
         } else {
             showMessage({
                 message: "Varning",
-                description: "E-post eller lösenord saknas",
+                description: "E-post och/eller lösenord saknas",
                 type: "warning",
             });
         }
