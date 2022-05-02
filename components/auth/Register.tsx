@@ -7,8 +7,6 @@ import { showMessage } from 'react-native-flash-message';
 export default function Register({ navigation, setIsLoggedIn }) {
     const [auth, setAuth] = useState<Partial<Auth>>({});
 
-    console.log("SETITLOGGED IN: ");
-    console.log(setIsLoggedIn);
 
     async function doRegister() {
         if (auth.email && auth.password) {

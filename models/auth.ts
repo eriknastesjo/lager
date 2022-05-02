@@ -41,7 +41,6 @@ const auth = {
 
         await storage.storeToken(result.data.token);
 
-        console.log(result);
         return {
             title: "Lyckat",
             message: "Du är inloggad",

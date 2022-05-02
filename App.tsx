@@ -34,9 +34,6 @@ export default function App() {
   const [orders, setOrders] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
 
-  console.log("LOGGED IN??");
-  console.log(isLoggedIn);
-
   useEffect(async () => {
     setIsLoggedIn(await authModel.loggedIn());
   }, []);
