@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { View, Text, Button } from "react-native";
 
-export default function LoginMenu({navigation}) {
+export default function LoginMenu({ navigation, setIsLoggedIn}) {
 
 
     function goToLogin() {

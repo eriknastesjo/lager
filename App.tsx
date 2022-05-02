@@ -7,13 +7,14 @@ import Home from './components/home/Home';
 import Pick from './components/pick/Pick';
 import Deliveries from './components/delivery/Deliveries';
 import Auth from './components/auth/Auth';
+import Logout from './components/auth/Logout';
 import Invoices from './components/invoices/Invoices'
 import Ship from './components/ship/Ship'
 import authModel from './models/auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
-
+import FlashMessage from "react-native-flash-message";
 
 const Tab = createBottomTabNavigator();
 // https://icons.expo.fyi/ sortera på ionicons eller importera bibliotek
@@ -22,8 +23,9 @@ const routeIcons = {
   "Plock": "cart",
   "Inleverans": "gift-sharp",
   "Logga in": "log-in",
+  "Logga ut": "log-out",
   "Faktura": "card",
-  "Leveranser": "airplane"
+  "Leveranser": "airplane",
 };
 
 export default function App() {
@@ -79,9 +81,16 @@ return (
           // </Tab.Screen> :
           // <Tab.Screen name="Faktura" component={Invoices} />
         }
+        {
+          isLoggedIn &&
+          <Tab.Screen name="Logga ut">
+              {() => <Logout setIsLoggedIn={setIsLoggedIn} />}
+          </Tab.Screen>
+        }
       </Tab.Navigator>
     </NavigationContainer>
     <StatusBar style="auto" />
+    <FlashMessage position="top" />
   </SafeAreaView>
 );
 }

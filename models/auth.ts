@@ -23,7 +23,18 @@ const auth = {
                 'content-type': 'application/json'
             },
         });
+
         const result = await response.json();
+
+        // error kommer med som property om login inte lyckas, då returner
+        // vi istället ett flash meddelande.
+        if (Object.prototype.hasOwnProperty.call(result, 'errors')) {
+            return {
+                title: result.errors.title,
+                message: result.errors.detail,
+                type: "danger",
+            };
+        }
 
         await storage.storeToken(result.data.token);
 
