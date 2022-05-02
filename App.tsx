@@ -34,9 +34,20 @@ export default function App() {
   const [orders, setOrders] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
 
+  console.log("LOGGED IN??");
+  console.log(isLoggedIn);
+
   useEffect(async () => {
     setIsLoggedIn(await authModel.loggedIn());
   }, []);
+
+
+  FlashMessage.setColorTheme({
+    success: "#36AA36",
+    info: "#3375D0",
+    warning: "#B64A06",
+    danger: "#B62306",
+  });
 
 return (
   <SafeAreaView style={Base.container}>
@@ -63,7 +74,6 @@ return (
             products={products} setProducts={setProducts}
             orders={orders} setOrders={setOrders} />}
         </Tab.Screen>
-        {/* <Tab.Screen name="Leveranser" component={Ship} /> */}
         <Tab.Screen name="Leveranser">
           {() => <Ship orders={orders} setOrders={setOrders} />}
         </Tab.Screen>
@@ -75,11 +85,6 @@ return (
           <Tab.Screen name="Logga in">
             {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
           </Tab.Screen>
-          // debug nedan för att kunna testa login
-          // <Tab.Screen name="Logga in">
-          //   {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
-          // </Tab.Screen> :
-          // <Tab.Screen name="Faktura" component={Invoices} />
         }
         {
           isLoggedIn &&
@@ -90,7 +95,9 @@ return (
       </Tab.Navigator>
     </NavigationContainer>
     <StatusBar style="auto" />
-    <FlashMessage position="top" />
+    <FlashMessage position="top" setColorTheme="" />
+
+
   </SafeAreaView>
 );
 }

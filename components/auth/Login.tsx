@@ -11,8 +11,6 @@ export default function Login({ navigation, setIsLoggedIn }) {
         if (auth.email && auth.password) {
             const result = await AuthModel.login(auth.email, auth.password);
 
-            console.log(result);
-
             if (result.type === "success") {
                 setIsLoggedIn(true);
             }
