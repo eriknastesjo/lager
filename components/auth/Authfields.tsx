@@ -1,6 +1,7 @@
 import { View, Text, TextInput, Button, ScrollView } from "react-native";
 import { Typography, Forms, Base } from '../../styles';
 
+
 export default function AuthFields({ auth, setAuth, title, submit, navigation }) {
     return (
         <View style={Base.base}>

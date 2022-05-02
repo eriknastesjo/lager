@@ -21,6 +21,12 @@ export default function Register({ navigation, setIsLoggedIn }) {
                 description: result.message,
                 type: result.type,
             });
+        } else {
+            showMessage({
+                message: "Varning",
+                description: "E-post eller lösenord saknas",
+                type: "warning",
+            });
         }
     }
 
