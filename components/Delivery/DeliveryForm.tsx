@@ -28,16 +28,16 @@ function hasAllProperties(obj, props) {
 function passValidattion(delivery) {
     if (!delivery.amount || delivery.amount <= 0) {
         showMessage({
-            message: "Misslyckat",
+            message: "Varning",
             description: "Inte ett giltigt antal",
-            type: "danger",
+            type: "warning",
         });
         return false;
     } else if (!delivery.delivery_date) {
         showMessage({
-            message: "Misslyckat",
+            message: "Varning",
             description: "Datum saknas",
-            type: "danger",
+            type: "warning",
         });
         return false;
     }
