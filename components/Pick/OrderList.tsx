@@ -21,7 +21,6 @@ export default function OrderList({ route, navigation, orders, setOrders }) {
         setOrders(await orderModel.getOrders());
     }
 
-
     const listOfOrders = orders
         .filter(order => order.status === "Ny")
         .map((order, index) => {
