@@ -3,6 +3,7 @@ import { useState } from 'react';
 import AuthModel from '../../models/auth';
 import AuthFields from './Authfields';
 import { showMessage } from 'react-native-flash-message';
+import { Text } from 'react-native-paper';
 
 export default function Register({ navigation, setIsLoggedIn }) {
     const [auth, setAuth] = useState<Partial<Auth>>({});

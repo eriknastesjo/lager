@@ -1,8 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Text } from 'react-native-paper';
 
 import Login from './Login';
 import Register from './Register';
 import Choice from './LoginMenu';
+import { getStateFromPath } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
