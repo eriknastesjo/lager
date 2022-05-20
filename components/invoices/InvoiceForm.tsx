@@ -12,10 +12,10 @@ import storageModel from '../../models/storage';
 async function addInvoice(navigation, invoice, currentOrder, setOrders) {
     let totalPrice = 0;
 
-    console.log("CUUUURREEEEEENT");
-    console.log(currentOrder);
-    console.log("INVOOOOIIIIICE");
-    console.log(invoice);
+    // console.log("CUUUURREEEEEENT");
+    // console.log(currentOrder);
+    // console.log("INVOOOOIIIIICE");
+    // console.log(invoice);
 
     currentOrder.order_items.map((order_item, index) => {
         totalPrice += order_item.price * order_item.amount;
@@ -34,10 +34,10 @@ export default function InvoiceForm({ navigation, orders, setOrders }) {
     const [invoices, setInvoices] = useState<Partial<Invoice>>({});
     const [currentOrder, setCurrentOrder] = useState<Order[]>([]);
 
-    console.log("CURRENT ORDER");
-    console.log(currentOrder);
-    console.log("CURRENT INVOICES");
-    console.log(invoices);
+    // console.log("CURRENT ORDER");
+    // console.log(currentOrder);
+    // console.log("CURRENT INVOICES");
+    // console.log(invoices);
 
     return (
         <ScrollView style={Base.content}>

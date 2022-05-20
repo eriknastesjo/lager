@@ -15,7 +15,7 @@ export default function OrderDropDown(props) {
     }, []);
 
     const itemsList = props.orders
-        .filter(order => order.status != "Fakturerad")
+        .filter(order => order.status != "Fakturerad")  // ändra senare till === "Skickad" (men finns just nu inget sätt att skicka ordern)
         .map((ord, index) => {
             if (isFirstItem) {
                 isFirstItem = false;

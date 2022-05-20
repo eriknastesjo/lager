@@ -26,7 +26,7 @@ export default function DateDropDown(props) {
                             setDropDownDate(date);
                             props.setDelivery({
                                 ...props.delivery,
-                                delivery_date: date.toLocaleDateString('se-SV'),
+                                delivery_date: convertDate(date)
                             });
                         }
                         setShow(false);
@@ -36,4 +36,9 @@ export default function DateDropDown(props) {
             )}
         </View>
     );
+}
+
+function convertDate(dateString: string) {
+    const date = new Date(dateString);
+    return date.getFullYear().toString().slice(-2) + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 }
